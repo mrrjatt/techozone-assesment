@@ -4,17 +4,15 @@ const cors = require('cors');
 const path = require('path');
 const authRoute = require('./routes/auth.route');
 const generateSwaggerUiFile = require('./swagger/swagger');
-// generateSwaggerUiFile();
+generateSwaggerUiFile();
 const swaggerUi = require('swagger-ui-express');
 const swaggerFile = require('./swagger/swagger-output.json');
-const { httpLogStream } = require('./utils/logger');
 
 const app = express();
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(morgan('dev'));
-app.use(morgan('combined', { stream: httpLogStream }));
 app.use(cors());
 
 global.__basedir = path.resolve() + "/..";
